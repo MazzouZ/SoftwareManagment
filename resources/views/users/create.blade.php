@@ -98,6 +98,20 @@
                                 @endif
 
                         </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                <i class="cui-screen-smartphone nav-icon"></i>
+                              </span>
+                            </div>
+                            <input type="number" name="tel">
+                            @if($errors->has('tel'))
+                                <em class="invalid-feedback">
+                                    {{ $errors->first('tel') }}
+                                </em>
+                            @endif
+
+                        </div>
                         <!------------------------------------------------------------->
                         <button type="submit" class="btn btn-danger btn-block btn-flat">Ajouter</button>
                         <a href="{{ url('/users') }}" class="btn btn-success btn-block btn-flat"">Cancel</a>

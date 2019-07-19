@@ -38,7 +38,7 @@
                             </div>
                             <select name="role" class="form-control form-control-sm" required>
                                 @foreach($roles as $role)
-                                    <option value="{{ $role->id }}" >{{ $role->name }}</option>
+                                    <option value="{{ $role->id }}" @if($users->roles->contains($role->id))selected @endif>{{ $role->name }}</option>
                                 @endforeach
                             </select>
                             @if($errors->has('roles'))
@@ -64,6 +64,11 @@
                             @endif
                         </div>
                         <!------------------------------------------------------------->
+                        <div class="form-group {{ $errors->has('tel') ? 'has-error' : '' }}">
+                            <label for="tel">Télephone</label>
+                            <input type="number" id="tel" name="tel" class="form-control" value="{{$users->tel}}">
+
+                        </div>
                         <div>
                             <input class="btn btn-danger" type="submit" value="Sauvgarder">
                         </div>

@@ -51,7 +51,7 @@ class UserController extends Controller
 
         if($request->hasFile('photo'))
             $User->photo=$request->photo->store('uploads','public');
-
+        $User->tel=$request->input('tel');
     	$User->save();
 
     	return redirect('/users/')->with('success', 'employee ajouté à la base de données');
@@ -87,11 +87,20 @@ class UserController extends Controller
 
         if($request->hasFile('photo'))
                 $users->photo=$request->photo->store('uploads','public');
+        $users->tel=$request->input('tel');
     	$users->save();
 
     	return redirect('/users/')->with('success', 'employee modifier dans la base de données');
     }
     //permet de supprimer un User
+    public function show(User $user)
+    {
+//        abort_unless(\Gate::allows('user_show'), 403);
+
+        $user->load('roles');
+
+        return view('users.show', compact('user'));
+    }
     public function destroy(Request $request,$id)
     { 
     	$users = User::find($id);

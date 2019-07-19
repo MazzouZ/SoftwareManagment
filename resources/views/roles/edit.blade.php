@@ -19,7 +19,7 @@
                     <label for="permissions">Permission</label>
                     <select name="permissions[]" id="permissions" class="form-control select2" multiple="multiple" required>
                         @foreach($permissions as $permission)
-                            <option value="{{ $permission->id }}" >{{ $permission->name }}</option>
+                            <option value="{{ $permission->id }}" @if($role->permissions->contains($permission->id)) selected @endif>{{ $permission->name }}</option>
                         @endforeach
                     </select>
                     @if($errors->has('permissions'))

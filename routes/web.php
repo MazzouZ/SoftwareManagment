@@ -19,7 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/conges/rapport','congeController@rapport');
-
+Route::get('/conges/filterByYear/{year}','congeController@filterByYear');
 
 Route::get('/home', 'HomeController@index');
 Route::resource('/conges','congeController');
@@ -38,7 +38,9 @@ Route::post('/docs_administratifs/envoyer','docs_administratifController@envoyer
 
 View::composer(['layouts.app'],function ($view){
 
-    $restes=\App\Conge::all()->where('etat','En cours de Vérification');
+    $restes=\App\Conge::all()->where('etat','Congé accepter par système' or 'Refusé par système' )
+                             ->where('etat_Admin','');
+
     $docs=\App\Docs_administratif::all()->where('etat','En attente');
     $Entreprise=\App\Entreprise::find(1);
     $view->with('restes',$restes)->with('docs',$docs)->with('Entreprise',$Entreprise);

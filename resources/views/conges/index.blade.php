@@ -13,37 +13,50 @@
     @if(count($conges) > 0)
         <table class="table table-striped table-bordered datatable dataTable no-footer">
             <thead class="thead-dark">
-            <th scope="col" > ID </th>
-            <th scope="col">Nom d'utilisateur</ths>
-            <th scope="col"> Temp de depart </th>
-            <th scope="col"> Temp de fin </th>
-            <th scope="col"> Etat </th>
-            <th scope="col"> Ajouté le </th>
-            <th scope="col"> Nombre de jour</th>
-            <th scope="col">Justification</th>
-            <th scope="col"> Action </th>
+                <th scope="col">Nom d'utilisateur</th>
+                <th scope="col">Cause</th>
+                <th scope="col" width="100">  Temp de depart </th>
+                <th scope="col" width="100"> Temp de fin </th>
+                <th scope="col"> Etat Système</th>
+                <th scope="col" style="background-color: #a21414;"><span class="blueEffect">Décision finale</span> </th>
+                <th scope="col" width="40"> Nombre de jour</th>
+                <th scope="col" width="40"> Nombre de jour rester</th>
+                <th scope="col">Justification</th>
+                <th scope="col"> Action </th>
             </thead>
             <tbody>
             @foreach($conges as $conge)
                 <tr>
-                    <td scope="row"> {{$conge->id}}</td>
                     <td scope="row"> {{$conge->user->name}}</td>
+                    <td scope="row"> <span class="badge badge-secondary"> {{$conge->cause}} </span> </td>
                     <td scope="row"> {{$conge->date_debut}}</td>
                     <td scope="row"> {{$conge->date_fin}}</td>
-                    <td scope="row">@if($conge->etat=="En cours de Vérification")
-                                         <span class="badge badge-warning"> {{$conge->etat}}</span>
-                                    @elseif($conge->etat=="Refusé")
+                    <td scope="row">@if($conge->etat=="Refusé par système")
                                          <span class="badge badge-danger"> {{$conge->etat}}</span>
-                                    @elseif($conge->etat=="Congé accepter")
+                                    @elseif($conge->etat=="Congé accepter par système")
                                          <span class="badge badge-success"> {{$conge->etat}}</span>
                                     @endif
                     </td>
-                    <td scope="row"> {{$conge->created_at}}</td>
+                    <td scope="row" style="background-color: #c59292;">
+                        @if($conge->etat_Admin=="Refusé")
+                            <span class="badge badge-danger"> {{$conge->etat_Admin}}</span>
+                        @elseif($conge->etat_Admin=="Accepter")
+                            <span class="badge badge-success"> {{$conge->etat_Admin}}</span>
+                        @endif
+                    </td>
                     <td scope="row"> {{$conge->nbr_jour}}
                     </td>
+                    <td scope="row"> {{$conge->user->nbr_jour_rester}}</td>
                     <td scope="row">
-                        <a href="{{asset('/storage/'.$conge->justification)}}" target="_blank" >Click pour voir la justification</a>
-
+                        @if(isset($conge->justification))
+                            <div class="blueEffect">
+                            <a href="{{asset('/storage/'.$conge->justification)}}" target="_blank" >Click pour voir la justification</a>
+                            </div>
+                        @else
+                            <div class="blueEffect">
+                            <i class="font-1xl text-danger cui-thumb-down"> Non Justifié</i>
+                            </div>
+                        @endif
                     </td>
                     <td scope="row">
                         

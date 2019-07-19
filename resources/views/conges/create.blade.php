@@ -17,10 +17,16 @@
                 <label for="date_fin">date de fin</label>
                 <input type="date" id="date_fin" name="date_fin" class="form-control datetime"  required>
             </div>
+
+            <div class="form-group {{ $errors->has('cause') ? 'has-error' : '' }}">
+                <label for="cause">cause</label>
+                <input type="text" id="cause" name="cause" class="form-control"  required>
+            </div>
             <div class="form-group {{ $errors->has('justification') ? 'has-error' : '' }}">
                 <label for="justification">Justification</label>
-                <input type="file" id="justification" name="justification" class="form-control custom-file"  required>
+                <input type="file" id="justification" name="justification" class="form-control custom-file"  >
             </div>
+
             <div class="form-group">
                 <p style="text-align: justify;">
                     ->Pour demander de 1 à 2 jours Il faut les demander 5 jours d'avant<br>

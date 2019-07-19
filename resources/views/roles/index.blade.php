@@ -14,19 +14,23 @@
             @if(count($roles) > 0)
                 <table class="table table-bordered table-striped table-hover datatable">
                     <thead class="thead-dark">
-                    <th scope="col" > ID </th>
                     <th scope="col"> Name </th>
                     <th scope="col"> Permissions </th>
+                    <th scope="col"> Utilisateurs </th>
                     <th scope="col"> Action </th>
                     </thead>
                     <tbody>
                     @foreach($roles as $role)
                         <tr>
-                            <td scope="row"> {{$role->id}}</td>
                             <td scope="row"> {{$role->name}}</td>
                             <td scope="row">
                                 @foreach($role->permissions as $key => $item)
                                     <span class="badge badge-info">{{ $item->name }}</span>
+                                @endforeach
+                            </td>
+                            <td scope="row">
+                                @foreach($role->users as $R)
+                                <span class="badge badge-secondary">{{$R->name}}</span>
                                 @endforeach
                             </td>
                             <td scope="row">

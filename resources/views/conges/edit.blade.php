@@ -21,7 +21,10 @@
                         <div class="form-group {{ $errors->has('date_fin') ? 'has-error' : '' }}">
                             <label for="date_fin">Date_fin</label>
                             <input type="date" id="date_fin" name="date_fin" class="form-control" value="{{ $conges->date_fin }}">
-                            
+                        </div>
+                        <div class="form-group {{ $errors->has('cause') ? 'has-error' : '' }}">
+                            <label for="cause">Cause</label>
+                            <input type="text" id="cause" name="cause" class="form-control"  value="{{ $conges->cause }}" required>
                         </div>
                         <div>
                             <input class="btn btn-danger" type="submit" value="Sauvgarder">

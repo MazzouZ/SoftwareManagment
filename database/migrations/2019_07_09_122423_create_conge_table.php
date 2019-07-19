@@ -18,7 +18,7 @@ class CreateCongeTable extends Migration
             $table->date('date_debut');
             $table->date('date_fin');
             $table->string('etat');
-            $table->string('justification');
+            $table->string('justification')->nullable();
             $table->timestamps();
         });
     }

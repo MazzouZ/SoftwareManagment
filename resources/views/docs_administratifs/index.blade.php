@@ -13,7 +13,6 @@
             @if(count($docs_administratifs) > 0)
                 <table class="table table-striped table-bordered datatable dataTable no-footer">
                     <thead class="thead-dark">
-                    <th scope="col" > ID </th>
                     <th scope="col">Nom d'utilisateur</th>
                     <th scope="col">Commentaire</th>
                     <th scope="col"> Temp de reçue </th>
@@ -25,7 +24,6 @@
                     <tbody>
                     @foreach($docs_administratifs as $docs_administratif)
                         <tr>
-                            <td scope="row"> {{$docs_administratif->id}}</td>
                             <td scope="row"> {{$docs_administratif->user->name}}</td>
                             <td scope="row"> {{$docs_administratif->titre}}</td>
                             <td scope="row"> {{$docs_administratif->date_recue}}</td>
