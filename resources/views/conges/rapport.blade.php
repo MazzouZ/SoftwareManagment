@@ -23,11 +23,11 @@
 {{--                @endforeach--}}
 {{--            </div>--}}
             @if(isset($reports))
-            <div class="col">
-                <br>
-                    <table class="table table-striped table-bordered datatable dataTable no-footer">
-                        <thead class="thead-dark">
+            <div class="row">
                 @foreach($years as $Y)
+                    <table class="table table-striped table-bordered datatable dataTable no-footer col-md-4" style="margin-left: 10px">
+                        <thead class="thead-dark">
+
                         <tr>
                             <th colspan="3" class="title"> {{$Y->year}}</th>
                         </tr>
@@ -49,9 +49,10 @@
                                 @endforeach
                             @endif
                         @endforeach
-                @endforeach
+
                         </tbody>
                     </table>
+                @endforeach
             </div>
             @else
                 <p> aucun congé dans le moment. </p>

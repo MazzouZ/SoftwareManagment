@@ -57,6 +57,11 @@
                     <i class="nav-icon cui-note"></i>Rapport
                 </a>
             </li>
+            <li class="@if(Request::url() == url('conges/status_salaire')) active @endif" style="margin-left:15px">
+                <a href="{{url('conges/status_salaire')}}" class="nav-link">
+                    <i class="nav-icon cui-note"></i>Status Salaire
+                </a>
+            </li>
         </ul>
     </li>
 @endcan

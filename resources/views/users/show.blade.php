@@ -59,6 +59,111 @@
                             {{$user->nbr_jour_rester}} / 18 jours
                         </td>
                     </tr>
+{{--                -------------------------------------------------------}}
+                    <tr>
+                        <th>
+                            CIN
+                        </th>
+                        <td>
+                            {{$user->cin}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            CNSS
+                        </th>
+                        <td>
+                            {{$user->cnss}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Polite
+                        </th>
+                        <td>
+                            {{$user->polite}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Adresse
+                        </th>
+                        <td>
+                            {{$user->adress}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Date d'embauche
+                        </th>
+                        <td>
+                            {{$user->hiring_date}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Date de sortie
+                        </th>
+                        <td>
+                            {{$user->exit_date}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Birth day
+                        </th>
+                        <td>
+                            {{$user->birth_date}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Num Ordre
+                        </th>
+                        <td>
+                            {{$user->order_number}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Professions
+                        </th>
+                        <td>
+                            {{$user->professions}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Salaire net
+                        </th>
+                        <td>
+                            {{$user->net_salary}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Salaire gross
+                        </th>
+                        <td>
+                            {{$user->gross_salary}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Situation familialle
+                        </th>
+                        <td>
+                            {{$user->family_situation}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Nombre d'enfants
+                        </th>
+                        <td>
+                            {{$user->nbr_children}}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <a style="margin-top:20px;" class="btn btn-primary" href="{{ url()->previous() }}">

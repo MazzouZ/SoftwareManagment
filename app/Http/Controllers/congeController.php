@@ -19,8 +19,7 @@ class congeController extends Controller
 
     public function index()
     {
-        //-------------------------------------
-
+        //-------------------------------------Ajouter 18 jours chaque année aux utilisateurs
         //--------------------------------------------
         $role = Auth::user()->getRoleNames();
         if ($role[0] == "Admin")
@@ -151,7 +150,8 @@ class congeController extends Controller
         $conge=Conge::find($id);
         $conge->delete();
         $user=User::find($conge->user_id);
-        $user->nbr_jour_rester+=$conge->nbr_jour;
+           if ($conge->etat_Admin == 'Accepter')
+            $user->nbr_jour_rester+=$conge->nbr_jour;
         $user->save();
         return redirect('/conges/')->with('success', 'Votre congé est Supprimer avec succèes');    
     }

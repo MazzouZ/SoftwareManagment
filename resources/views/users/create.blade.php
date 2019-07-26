@@ -104,7 +104,7 @@
                                 <i class="cui-screen-smartphone nav-icon"></i>
                               </span>
                             </div>
-                            <input type="number" name="tel">
+                            <input type="text" name="tel" placeholder="Phone number">
                             @if($errors->has('tel'))
                                 <em class="invalid-feedback">
                                     {{ $errors->first('tel') }}

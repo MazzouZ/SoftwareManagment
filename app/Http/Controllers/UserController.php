@@ -88,6 +88,22 @@ class UserController extends Controller
         if($request->hasFile('photo'))
                 $users->photo=$request->photo->store('uploads','public');
         $users->tel=$request->input('tel');
+
+//        -------------------------------------------------------------------------------
+        $users->cin=$request->input('cin'             );
+        $users->cnss=$request->input('cnss'            );
+        $users->polite=$request->input('polite'          );
+        $users->adress=$request->input('adress'          );
+        $users->exit_date=$request->input('exit_date'       );
+        $users->hiring_date=$request->input('hiring_date'     );
+        $users->birth_date=$request->input('birth_date'      );
+        $users->order_number=$request->input('order_number'    );
+        $users->professions=$request->input('professions'     );
+        $users->net_salary=$request->input('net_salary'      );
+        $users->gross_salary=$request->input('gross_salary'    );
+        $users->family_situation=$request->input('family_situation');
+        $users->nbr_children=$request->input('nbr_children'    );
+//        -------------------------------------------------------------------------------
     	$users->save();
 
     	return redirect('/users/')->with('success', 'employee modifier dans la base de données');

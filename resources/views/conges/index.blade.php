@@ -8,7 +8,14 @@
         </ul>
     </div>
         <h4 align="center">liste des congés</h4>
-
+    <div class="col-md-12">
+        @can('Demander_conge')
+            <a class="btn btn-sm btn-pill btn-primary col-md-3" href="/conges/create"> Demander un congé </a>
+        @endcan
+        <a href="/conges/live_search" class="btn btn-sm btn-pill btn-warning col-md-3" style="margin-left: auto">
+            <i class="fa fa-circle-o-notch fa-spin"></i>Recherche
+        </a>
+    </div>
 <div class="card-body">
     @if(count($conges) > 0)
         <table class="table table-striped table-bordered datatable dataTable no-footer">
@@ -94,9 +101,6 @@
     @else
         <p> aucun congé dans le moment. </p>
     @endif
-    @can('Demander_conge')
-    <a class="btn btn-primary" href="/conges/create"> Demander un congé </a>
-    @endcan
 </div>
 </div>
 @endsection

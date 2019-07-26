@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Docs_administratif;
+use App\Entreprise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +36,7 @@ class Docs_administratifController extends Controller
         ]);
 
             $docs_administratif = new Docs_administratif();
-            $docs_administratif->titre = $request->input('commentaire');
+            $docs_administratif->titre = implode(',',$request->input('commentaire'));
             $docs_administratif->etat = "En attente";
             $docs_administratif->user_id=Auth::User()->id;
             $docs_administratif->save();
@@ -47,18 +48,21 @@ class Docs_administratifController extends Controller
     public  function envoyer(Request $request){
 
         $doc=Docs_administratif::find($request->id);
-        if($request->hasFile('fichier')){
-            $doc->fichier= $request->fichier->store('docs_administratifs','public');
-            $doc->etat="Document reçue";
-            $doc->date_recue=Date('y-m-d');
-            }
-        else $doc->etat="Document n'existe pas";
+
+
+//            $doc->fichier= $request->fichier->store('docs_administratifs','public');
+
+        $doc->etat="Document reçue";
+        $doc->date_recue=Date('y-m-d');
         $doc->save();
-        return redirect('/docs_administratifs/');
+        return view('docs_administratifs.files.index')->with('doc',$doc);
+
     }
     //--------------------------------------------
-    public function n_existe_pas($id){
+    public function view_by_click($id){
 
-
+        $doc=Docs_administratif::find($id);
+        $entreprise=Entreprise::all()->first();
+    return view('docs_administratifs.files.attestation_travail')->with('doc',$doc)->with('entreprise',$entreprise);
     }
 }

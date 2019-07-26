@@ -3,7 +3,7 @@
 <div class="content">
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-12">
 
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -14,6 +14,7 @@
                     <form action="{{ route("users.update", [$users->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+                     <div class="col-md-4" style="float: left">
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                             <label for="name">Nom</label>
                             <input type="text" id="name" name="name" class="form-control" value="{{ $users->name}}">
@@ -63,15 +64,86 @@
                                 </span>
                             @endif
                         </div>
-                        <!------------------------------------------------------------->
+
                         <div class="form-group {{ $errors->has('tel') ? 'has-error' : '' }}">
                             <label for="tel">Télephone</label>
-                            <input type="number" id="tel" name="tel" class="form-control" value="{{$users->tel}}">
+                            <input type="text" id="tel" name="tel" class="form-control" value="{{$users->tel}}">
+                        
+                        </div>
+                         <div>
+                             <input class="btn btn-danger" type="submit" value="Sauvgarder">
+                         </div>
+                     </div><!------------------------------------------------------------->
 
-                        </div>
-                        <div>
-                            <input class="btn btn-danger" type="submit" value="Sauvgarder">
-                        </div>
+                     <div class="col-md-4" style="margin-left: auto">
+                             <div class="form-group {{ $errors->has('cin') ? 'has-error' : '' }}">
+                                 <label for="cin">Num CIN:</label>
+                                 <input type="text" id="cin" name="cin" class="form-control" value="{{$users->cin}}">
+                             </div>
+
+                             <div class="form-group {{ $errors->has('cnss') ? 'has-error' : '' }}">
+                                 <label for="cnss">CNSS</label>
+                                 <input type="text" id="cnss" name="cnss" class="form-control" value="{{$users->cnss}}">
+                             </div>
+
+                             <div class="form-group {{ $errors->has('polite') ? 'has-error' : '' }}">
+                                 <label for="polite">Polite</label>
+                                 <input type="text" id="polite" name="polite" class="form-control" value="{{$users->polite}}">
+                             </div>
+
+                             <div class="form-group {{ $errors->has('adress') ? 'has-error' : '' }}">
+                                 <label for="adress">Adress</label>
+                                 <input type="text" id="adress" name="adress" class="form-control" value="{{$users->adress}}">
+                             </div>
+
+                             <div class="form-group {{ $errors->has('hiring_date') ? 'has-error' : '' }}">
+                                 <label for="hiring_date">Date d'enbauche</label>
+                                 <input type="date" id="hiring_date" name="hiring_date" class="form-control" value="{{$users->hiring_date}}">
+                             </div>
+                             <div class="form-group {{ $errors->has('exit_date') ? 'has-error' : '' }}">
+                                 <label for="exit_date">Exit date</label>
+                                 <input type="date" id="exit_date" name="exit_date" class="form-control" value="{{$users->exit_date}}">
+                             </div>
+                             <div class="form-group {{ $errors->has('birth_date') ? 'has-error' : '' }}">
+                                 <label for="birth_date">Birth day</label>
+                                 <input type="date" id="birth_date" name="birth_date" class="form-control" value="{{$users->birth_date}}">
+
+                             </div>
+                             <div class="form-group {{ $errors->has('order_number') ? 'has-error' : '' }}">
+                                 <label for="order_number">Numéro d'ordre</label>
+                                 <input type="text" id="order_number" name="order_number" class="form-control" value="{{$users->order_number}}">
+
+                             </div>
+                             <div class="form-group {{ $errors->has('professions') ? 'has-error' : '' }}">
+                                 <label for="professions">Professions</label>
+                                 <input type="text" id="professions" name="professions" class="form-control" value="{{$users->professions}}">
+
+                             </div>
+                             <div class="form-group {{ $errors->has('net_salary') ? 'has-error' : '' }}">
+                                 <label for="net_salary">Salaire Net</label>
+                                 <input type="text" id="net_salary" name="net_salary" class="form-control" value="{{$users->net_salary}}">
+
+                             </div>
+                             <div class="form-group {{ $errors->has('gross_salary') ? 'has-error' : '' }}">
+                                 <label for="gross_salary">gross_salary</label>
+                                 <input type="text" id="gross_salary" name="gross_salary" class="form-control" value="{{$users->gross_salary}}">
+
+                             </div>
+                             <div class="form-group {{ $errors->has('family_situation') ? 'has-error' : '' }}">
+                                 <label for="family_situation">Situation familliale</label>
+                                 <input type="text" id="family_situation" name="family_situation" class="form-control" value="{{$users->family_situation}}">
+
+                             </div>
+                             <div class="form-group {{ $errors->has('nbr_children') ? 'has-error' : '' }}">
+                                 <label for="nbr_children">Nombre d'enfants</label>
+                                 <input type="number" id="nbr_children" name="nbr_children" class="form-control" value="{{$users->nbr_children}}">
+
+                             </div>
+
+{{----------------------------------------------------------------------}}
+
+                     </div>
+
                     </form>
 
                 </div>

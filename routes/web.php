@@ -18,6 +18,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/conges/status_salaire','CsvFile@index');
+Route::get('/conges/status_salaire/export', 'CsvFile@csv_export')->name('export');
+
+Route::get('/conges/live_search', 'LiveSearch@index');
+Route::get('/conges/live_search/action', 'LiveSearch@action')->name('live_search.action');
+
+
 Route::get('/conges/rapport','congeController@rapport');
 Route::get('/conges/filterByYear/{year}','congeController@filterByYear');
 
@@ -35,6 +42,7 @@ Route::get('/conges/{id}/Refuser','congeController@Refuser_conge');
 
 
 Route::post('/docs_administratifs/envoyer','docs_administratifController@envoyer');
+Route::get('/docs_administratifs/view_by_click/{id}','docs_administratifController@view_by_click');
 
 View::composer(['layouts.app'],function ($view){
 

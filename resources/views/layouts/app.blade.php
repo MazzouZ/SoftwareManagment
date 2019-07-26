@@ -15,6 +15,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+{{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />--}}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{{--    ------------------------------}}
+{{--    <link rel="stylesheet" href="{{asset('css/f1.woff')}}"/>--}}
+{{--    <link rel="stylesheet" href="{{asset('css/f2.woff')}}"/>--}}
+    <link rel="stylesheet" href="{{asset('css/base.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/fancy.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/main.css')}} "/>
 
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
@@ -23,11 +32,10 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="/home">
-        <img class="navbar-brand-full" src="{{asset('/storage/'.$Entreprise->logo)}}" width="40" height="40"
+        <img class="navbar-brand-full" src="{{asset('/storage/'.$Entreprise->logo)}}" width="100" height="40"
              alt="Infyom Logo">
-        <img class="navbar-brand-minimized" src="{{asset('/storage/'.$Entreprise->logo)}}" width="40"
+        <img class="navbar-brand-minimized" src="{{asset('/storage/'.$Entreprise->logo)}}" width="100"
              height="40" alt="Infyom Logo">
-        {{$Entreprise->raison_sociale}}
     </a>
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
         <span class="navbar-toggler-icon"></span>
@@ -122,6 +130,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+{{--------------------------------------------}}
+<script src="{{asset('js/compatibility.min.js')}}"></script>
+<script src="{{asset('js/theViewer.min.js')}}"></script>
+<script src="{{asset('js/printThis.js')}}"></script>
+<script>
+    try{
+        theViewer.defaultViewer = new theViewer.Viewer({});
+    }catch(e){}
+</script>
+
 @yield('scripts')
 
 </html>
