@@ -45,4 +45,7 @@ class User extends Authenticatable
     public function docs_administratifs(){
         return $this->hasMany('App\Docs_administratif');
     }
+    public function Pointages(){
+        return $this->hasMany('App\Pointage');
+    }
 }

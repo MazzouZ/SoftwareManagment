@@ -7,7 +7,7 @@
     </div>
     <div class="panel-body">
 
-        <a class="btn btn-sm btn-dark" href="{{ route('export') }}">Export User Data</a>
+        <a class="btn btn-sm btn-dark" href="{{ route('export') }}">Export Data csv</a>
 
         <table class="table table-striped table-bordered datatable dataTable no-footer">
             <thead class="thead-dark">
@@ -19,7 +19,7 @@
                      <th>Prime</th>
                      <th>Heures travaillée</th>
                      <th>Congé (J)</th>
-                     <th>Reste (H)</th>
+                     <th>Cause</th>
                  </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                          <td></td>
                          <td>{{191-$row->somme_conge_mois*8}}</td>
                          <td>{{ $row->somme_conge_mois }} </td>
-                         <td>{{(191-$row->somme_conge_mois*8)-191}}</td>
+                         <td>{{$row->cause}}</td>
                      </tr>
                  @endforeach
             </tbody>

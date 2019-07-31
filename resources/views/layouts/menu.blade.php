@@ -94,4 +94,25 @@
         </ul>
     </li>
 @endcan
-<!------------------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------------pointage---->
+<li class="nav-item nav-dropdown">
+    <a class="nav-link  nav-dropdown-toggle">
+        <i class="fa fa-calendar-check-o nav-icon">
+
+        </i>
+        Pointage
+    </a>
+    <ul class="nav-dropdown-items">
+
+        <li class="@if(Request::url() == url('pointage')) active @endif" style="margin-left:15px">
+            <a href="{{url('pointage')}}" class="nav-link">
+                <i class="nav-icon fa fa-cloud-upload"></i>pointage
+            </a>
+        </li>
+        <li class="@if(Request::url() == url('pointage/rapport')) active @endif" style="margin-left:15px">
+            <a href="{{url('pointage/rapport')}}" class="nav-link">
+                <i class="nav-icon icon-book-open"></i>Rapport
+            </a>
+        </li>
+    </ul>
+</li>

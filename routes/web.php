@@ -18,15 +18,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/conges/status_salaire','CsvFile@index');
+Route::get('/conges/status_salaire','CsvFile@index_status');
 Route::get('/conges/status_salaire/export', 'CsvFile@csv_export')->name('export');
-
+//------------------------------------------------
+Route::get('/pointage/rapport','PointageController@index_rapport');
+//-------------------------------------------------------
+Route::get('/pointage/','CsvFile@index_pointage');
+Route::post('/pointage/import', 'CsvFile@csv_import')->name('import');
+//----------------------------------------------------------------------------------------------
 Route::get('/conges/live_search', 'LiveSearch@index');
 Route::get('/conges/live_search/action', 'LiveSearch@action')->name('live_search.action');
-
+//----------------------------------------------------------------------------------------------
 
 Route::get('/conges/rapport','congeController@rapport');
 Route::get('/conges/filterByYear/{year}','congeController@filterByYear');
+//----------------------------------------------------------------------------------------------
 
 Route::get('/home', 'HomeController@index');
 Route::resource('/conges','congeController');
@@ -36,13 +42,16 @@ Route::resource('/roles','roleController');
 Route::resource('/docs_administratifs','docs_administratifController');
 Route::resource('/free_days','free_daysController');
 Route::resource('/Entreprise','entrepriseController');
+//----------------------------------------------------------------------------------------------
 
 Route::get('/conges/{id}/accepter','congeController@accepter_conge');
 Route::get('/conges/{id}/Refuser','congeController@Refuser_conge');
+//----------------------------------------------------------------------------------------------
 
 
 Route::post('/docs_administratifs/envoyer','docs_administratifController@envoyer');
 Route::get('/docs_administratifs/view_by_click/{id}','docs_administratifController@view_by_click');
+//----------------------------------------------------------------------------------------------
 
 View::composer(['layouts.app'],function ($view){
 
