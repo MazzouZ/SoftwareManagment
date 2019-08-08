@@ -5,7 +5,7 @@
 @foreach (explode(',',$doc->titre) as $d)
     @if($d == "attestation de travail")
     <div class="col-sm-6 col-md-4">
-        <a href="/docs_administratifs/view_by_click/{{$doc->id}}">
+        <a href="/docs_administratifs/view_attestation_travail/{{$doc->id}}">
         <div class="card text-white bg-primary text-center">
             <div class="card-body">
                 <blockquote class="card-bodyquote">
@@ -21,6 +21,7 @@
     @endif
     @if($d == "attestation de stage")
     <div class="col-sm-6 col-md-4">
+        <a href="/docs_administratifs/view_attestation_stage/{{$doc->id}}">
         <div class="card text-white bg-success text-center">
             <div class="card-body">
                 <blockquote class="card-bodyquote">
@@ -31,10 +32,12 @@
                 </blockquote>
             </div>
         </div>
+        </a>
     </div>
     @endif
     @if($d == "attestation de pôle d'emploi")
     <div class="col-sm-6 col-md-4">
+        <a href="#">
         <div class="card text-white bg-info text-center">
             <div class="card-body">
                 <blockquote class="card-bodyquote">
@@ -45,10 +48,12 @@
                 </blockquote>
             </div>
         </div>
+        </a>
     </div>
     @endif
     @if($d == "attestation de salaire")
     <div class="col-sm-6 col-md-4">
+        <a href="/docs_administratifs/view_recue_solde_compte/{{$doc->id}}">
         <div class="card text-white bg-warning text-center">
             <div class="card-body">
                 <blockquote class="card-bodyquote">
@@ -59,10 +64,12 @@
                 </blockquote>
             </div>
         </div>
+        </a>
     </div>
     @endif
     @if($d == "accusé de réception de lettre de démission")
     <div class="col-sm-6 col-md-4">
+        <a href="/docs_administratifs/view_accuse_reception/{{$doc->id}}">
         <div class="card text-white bg-danger text-center">
             <div class="card-body">
                 <blockquote class="card-bodyquote">
@@ -73,6 +80,7 @@
                 </blockquote>
             </div>
         </div>
+        </a>
     </div>
     @endif
 @endforeach

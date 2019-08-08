@@ -18,9 +18,9 @@ class Docs_administratifController extends Controller
     {
         $role = Auth::user()->getRoleNames();
         if ($role[0] == "Admin")
-            $docs_administratifs = Docs_administratif::orderBy('id','asc')->paginate(5);
+            $docs_administratifs = Docs_administratif::orderBy('id','asc')->paginate(10);
 
-        else $docs_administratifs = Docs_administratif::where('user_id',Auth::user()->id)->orderBy('id','asc')->paginate(5);
+        else $docs_administratifs = Docs_administratif::where('user_id',Auth::user()->id)->orderBy('id','asc')->paginate(10);
 //         dd($docs_administratifs);
         return view('docs_administratifs.index')->with('docs_administratifs', $docs_administratifs);
     }
@@ -59,10 +59,28 @@ class Docs_administratifController extends Controller
 
     }
     //--------------------------------------------
-    public function view_by_click($id){
+    public function view_attestation_travail($id){
 
         $doc=Docs_administratif::find($id);
         $entreprise=Entreprise::all()->first();
     return view('docs_administratifs.files.attestation_travail')->with('doc',$doc)->with('entreprise',$entreprise);
+    }
+    public function view_attestation_stage($id){
+
+        $doc=Docs_administratif::find($id);
+        $entreprise=Entreprise::all()->first();
+        return view('docs_administratifs.files.attestation_stage')->with('doc',$doc)->with('entreprise',$entreprise);
+    }
+
+    public function view_recue_solde_compte($id){
+        $doc=Docs_administratif::find($id);
+        $entreprise=Entreprise::all()->first();
+        return view('docs_administratifs.files.Recu_solde_compte')->with('doc',$doc)->with('entreprise',$entreprise);
+    }
+
+    public function view_accuse_reception($id){
+        $doc=Docs_administratif::find($id);
+        $entreprise=Entreprise::all()->first();
+        return view('docs_administratifs.files.accuse_reception')->with('doc',$doc)->with('entreprise',$entreprise);
     }
 }

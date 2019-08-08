@@ -1,17 +1,22 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Pointage</h3>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Pointage</h3>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
+        @can('import_pointage_data')
         <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="file" name="file" accept=".csv">
-            <br>
-            <button class="btn btn-success">Import User Data</button>
+            <input type="file" name="file" accept=".csv" class="form-group">
+
+            <button class="btn btn-success" class="form-group">Importé les données Pointage</button>
         </form>
+        @endcan
+        <div class="col-md-6">
+            <div class="dataTables_filter"><label>Recherche:<input id="myInput" class="form-control form-control-sm" type="search" placeholder="" /></label></div>
+        </div>
         <table class="table table-striped table-bordered datatable dataTable no-footer">
             <thead class="thead-dark">
             <tr>
@@ -22,7 +27,7 @@
                 <th>Total</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="myTable">
             @foreach($p as $po)
                 <tr>
                     <td>{{ $po->jour }}</td>
@@ -38,5 +43,15 @@
         {{ $p->links() }}
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 
 @endsection

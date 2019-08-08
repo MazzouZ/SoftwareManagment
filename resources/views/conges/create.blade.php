@@ -33,11 +33,14 @@
                     ->Pour demander de 3 à 4 jours Il faut les demander 7 jours d'avant<br>
                     ->Pour demander de 5 à 10 jours Il faut les demander 1 Mois d'avant<br>
                     ->Pour demander Plus de 10 jours Il faut les demander 1 mois et 15 jours d'avant<br>
-                    Si non votre congé sera refusé
+                    Si non votre congé sera refusé automatiquement par le système ;)
                 </p>
             </div>
             <div>
                 <input class="btn btn-danger" type="submit" value="save">
+                <a  class="btn btn-dark" href="http://127.0.0.1:8000/conges">
+                    Annuler
+                </a>
             </div>
 
         </form>

@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
+    <link rel="stylesheet" href="{{asset('css/coreui.min.css')}}">
     <!-- Ionicons -->
+    <link rel="stylesheet" href="{{asset('css/coreui-icons.min.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/coreui-icons.min.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet">
@@ -19,6 +20,8 @@
 {{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />--}}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 {{--    ------------------------------}}
+{{--    <script src="{{asset('js/jspdf.js')}}"></script>--}}
+{{--    <script src="{{asset('js/pdfFromHTML.js')}}"></script>--}}
 {{--    <link rel="stylesheet" href="{{asset('css/f1.woff')}}"/>--}}
 {{--    <link rel="stylesheet" href="{{asset('css/f2.woff')}}"/>--}}
     <link rel="stylesheet" href="{{asset('css/base.min.css')}}"/>
@@ -47,7 +50,9 @@
         <li class="nav-item dropdown d-md-down-none">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="icon-bell"></i>
+                @if(count($restes) + count($docs) > 0 )
                 <span class="badge badge-pill badge-danger">{{count($restes) + count($docs)}}</span>
+                @endif
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
                 <div class="dropdown-header text-center">
@@ -75,29 +80,19 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-header text-center">
-                    <strong>Account</strong>
-                </div>
-                <a class="dropdown-item" href="#">
-                    <i class="fa fa-envelope-o"></i> Messages
-                    <span class="badge badge-success">42</span>
-                </a>
-                <div class="dropdown-header text-center">
-                    <strong>Settings</strong>
-                </div>
-                <a class="dropdown-item" href="#">
+
+
+
+                <a class="dropdown-item" href="http://127.0.0.1:8000/Profile/{{Auth::user()->id}}">
                     <i class="fa fa-user"></i> Profile</a>
-                <a class="dropdown-item" href="#">
-                    <i class="fa fa-wrench"></i> Settings</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                    <i class="fa fa-shield"></i> Lock Account</a>
-                <a class="dropdown-item" href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+
+
+
+                <a class="dropdown-item" href="http://127.0.0.1:8000/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fa fa-lock"></i>Logout
                 </a>
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
+                <form id="logout-form" action="http://127.0.0.1:8000/logout" method="POST" style="display: none;">
+                    <input type="hidden" name="_token" value="SBW8JIfMzxJcsEIDPc7isHNqcrRK9grZagpEHygC">
                 </form>
             </div>
         </li>
@@ -108,20 +103,25 @@
     @include('layouts.sidebar')
     <main class="main">
         <div class="container">
-        @yield('content')
+            <div>
+                @if(! preg_match('#docs_administratifs/#',URL::current(),$x))
+                <ul class="breadcrumb">
+                    <li><i class="icon-home"></i> </li>
+                    <li><a href="{{url('/home')}}">Home</a></li>
+                    <li><a href="{{ url()->previous() }}"> /  Retour</a></li>
+                </ul>
+                @endif
+            </div>
+            @yield('content')
        </div>
     </main>
 </div>
-<footer class="app-footer">
-    <div>
-        <a href="#">SOFTWARE </a>
-        <span>&copy; 2019 SOFTWARE Marrakech.</span>
-    </div>
-    <div class="ml-auto">
-        <span>Powered by</span>
-        <a href="#">SOFTWARE Marrakech</a>
-    </div>
-</footer>
+{{--<footer class="app-footer">--}}
+{{--    <div class="ml-auto">--}}
+{{--        <span>A</span>--}}
+{{--        <strong>{{$entreprise->raison_sociale}}</strong>--}}
+{{--    </div>--}}
+{{--</footer>--}}
 </body>
 <!-- jQuery 3.1.1 -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -134,12 +134,7 @@
 <script src="{{asset('js/compatibility.min.js')}}"></script>
 <script src="{{asset('js/theViewer.min.js')}}"></script>
 <script src="{{asset('js/printThis.js')}}"></script>
-<script>
-    try{
-        theViewer.defaultViewer = new theViewer.Viewer({});
-    }catch(e){}
-</script>
-
+@include('sweetalert::alert')
 @yield('scripts')
 
 </html>

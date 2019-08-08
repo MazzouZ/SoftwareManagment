@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        Demande de congé
+        Ajouté un jour férié
     </div>
 
     <div class="card-body">
@@ -19,6 +19,9 @@
             </div>
             <div>
                 <input class="btn btn-danger" type="submit" value="save">
+                <a  class="btn btn-dark" href="http://127.0.0.1:8000/free_days">
+                    Annuler
+                </a>
             </div>
 
         </form>

@@ -26,3 +26,30 @@ img:hover {
 p{
     font-family: Florence, cursive;
 }
+#myInput,#myInput2 {
+    width: 60%;
+    height: 25px;
+    margin: 0 auto;
+    border: none; /* <-- This thing here */
+    border:solid 1px #ccc;
+    border-radius: 10px;
+
+    background-image: url('https://www.w3schools.com/css/searchicon.png');
+    background-position: 6px 2px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+#myInput3,#myInput4 {
+    background-image: url('https://www.w3schools.com/css/searchicon.png');
+    background-position: 6px 15px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}

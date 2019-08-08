@@ -75,6 +75,14 @@ class UserController extends Controller
             'role' => 'required'
         ]);
 
+        if ( $request->input('password') != $request->input('confirm_password')){
+
+            $user =User::find($id);
+            $roles = Role::all();
+            alert()->warning('mots de passes pas identiques');
+            return view('users.edit',[ 'users'=>$user],[ 'roles'=>$roles]);
+        }
+
     	$users =User::find($id);
     	$users->name=$request->input('name');
         $users->email=$request->input('email');
@@ -108,7 +116,7 @@ class UserController extends Controller
 
     	return redirect('/users/')->with('success', 'employee modifier dans la base de données');
     }
-    //permet de supprimer un User
+
     public function show(User $user)
     {
 //        abort_unless(\Gate::allows('user_show'), 403);
@@ -125,5 +133,38 @@ class UserController extends Controller
 
     	return redirect('/users/')->with('success', 'employee supprimer de la base de données');
     }
-    
+    //--------------------------------------------------------------
+    public function view_profile($id)
+    {
+        $users =User::find($id);
+        $roles = Role::all();
+        return view('users.profile',[ 'users'=>$users],[ 'roles'=>$roles]);
+    }
+    //--------------------------------------------------------------
+    public function updateProfile(Request $request,$id)
+    {
+
+        if ( $request->input('password') != $request->input('confirm_password')){
+
+            $user =User::find($id);
+            alert()->warning('mots de passes pas identiques');
+            return view('users.profile',[ 'users'=>$user]);
+        }
+
+        $user =User::find($id);
+        $user->name=$request->input('name');
+        $user->email=$request->input('email');
+        if ( $request->input('password') != "null");
+          $user->password=bcrypt($request->input('password'));
+
+        if($request->hasFile('photo'))
+            $user->photo=$request->photo->store('uploads','public');
+        $user->tel=$request->input('tel');
+
+        $user->save();
+
+        return view('users.profile',[ 'users'=>$user]);
+    }
+
+
 }

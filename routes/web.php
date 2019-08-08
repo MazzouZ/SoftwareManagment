@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 
 Auth::routes();
+Route::get('/Profile/{id}','UserController@view_profile');
+Route::PUT('/Profile/{id}','UserController@updateProfile')->name('updateProfile');
 
 Route::get('/conges/status_salaire','CsvFile@index_status');
 Route::get('/conges/status_salaire/export', 'CsvFile@csv_export')->name('export');
@@ -50,7 +52,10 @@ Route::get('/conges/{id}/Refuser','congeController@Refuser_conge');
 
 
 Route::post('/docs_administratifs/envoyer','docs_administratifController@envoyer');
-Route::get('/docs_administratifs/view_by_click/{id}','docs_administratifController@view_by_click');
+Route::get('/docs_administratifs/view_attestation_travail/{id}','docs_administratifController@view_attestation_travail');
+Route::get('/docs_administratifs/view_attestation_stage/{id}','docs_administratifController@view_attestation_stage');
+Route::get('/docs_administratifs/view_recue_solde_compte/{id}','docs_administratifController@view_recue_solde_compte');
+Route::get('/docs_administratifs/view_accuse_reception/{id}','docs_administratifController@view_accuse_reception');
 //----------------------------------------------------------------------------------------------
 
 View::composer(['layouts.app'],function ($view){

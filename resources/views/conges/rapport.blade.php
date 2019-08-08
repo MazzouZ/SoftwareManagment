@@ -1,13 +1,9 @@
 @extends('layouts.app')
 @section('content')
-    <div class="card" style="background-color:#e4e5e6;">
-        <div>
-            <ul class="breadcrumb">
-                <li><i class="icon-home"></i> </li>
-                <li><a href="{{url('/home')}}">Home</a></li>
-            </ul>
-        </div>
+    <div class="card" >
+        <div class="card-header">
         <h3 align="center">Rapport des congés</h3>
+        </div>
 
         <div class="card-body">
 {{--            <div class="col">--}}

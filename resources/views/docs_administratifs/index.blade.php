@@ -1,15 +1,20 @@
 @extends('layouts.app')
 @section('content')
-    <div class="card" style="background-color:#e4e5e6;">
-        <div>
-            <ul class="breadcrumb">
-                <li><i class="icon-home"></i> </li>
-                <li><a href="{{url('/home')}}">Home</a></li>
-            </ul>
+    <div class="card" >
+        <div class="card-header">
+            <h4 align="center">liste des documents</h4>
         </div>
-        <h4 align="center">liste des documents</h4>
-
         <div class="card-body">
+        <div class="col-md-4">
+        @can('Demander_docs_administratif')
+            <a class="btn btn-primary" href="/docs_administratifs/create"> Demander un document </a>
+        @endcan
+        </div>
+        <div class="col-md-6">
+            <div class="dataTables_filter"><label>Recherche:<input id="myInput" class="form-control form-control-sm" type="search" placeholder="" /></label></div>
+        </div>
+
+
             @if(count($docs_administratifs) > 0)
                 <table class="table table-striped table-bordered datatable dataTable no-footer">
                     <thead class="thead-dark">
@@ -20,7 +25,7 @@
                     <th scope="col"> Demender le </th>
                     <th scope="col"> Action </th>
                     </thead>
-                    <tbody>
+                    <tbody id="myTable">
                     @foreach($docs_administratifs as $docs_administratif)
                         <tr>
                             <td scope="row"> {{$docs_administratif->user->name}}</td>
@@ -56,9 +61,16 @@
             @else
                 <p> aucun document dans le moment. </p>
             @endif
-            @can('Demander_docs_administratif')
-                <a class="btn btn-primary" href="/docs_administratifs/create"> Demander un document </a>
-            @endcan
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 @endsection

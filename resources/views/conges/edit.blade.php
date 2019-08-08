@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-lg-12">
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card">
+                <div class="card-header">
                     <h5>Modification</h5>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
 
                     <form action="{{ route("conges.update", [$conges->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -26,8 +26,15 @@
                             <label for="cause">Cause</label>
                             <input type="text" id="cause" name="cause" class="form-control"  value="{{ $conges->cause }}" required>
                         </div>
+                        <div class="form-group {{ $errors->has('justification') ? 'has-error' : '' }}">
+                            <label for="justification">Justification</label>
+                            <input type="file" id="justification" name="justification" class="form-control custom-file"  >
+                        </div>
                         <div>
                             <input class="btn btn-danger" type="submit" value="Sauvgarder">
+                            <a  class="btn btn-dark" href="http://127.0.0.1:8000/conges">
+                                Annuler
+                            </a>
                         </div>
                     </form>
 

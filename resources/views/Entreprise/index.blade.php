@@ -5,11 +5,11 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="card">
+                    <div class="card-header">
                         <h5>Informations concernant l'entreprise</h5>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
 
                         <form action="{{ route("Entreprise.update", [$E->id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf

@@ -11,13 +11,7 @@
 @section('content')
 <br />
 <div class="container box">
-    <div>
-        <ul class="breadcrumb">
-            <li><i class="icon-home"></i> </li>
-            <li><a href="{{url('/home')}}">Home </a></li>
-            <li><a href="{{url('/conges')}}">| Liste congés</a></li>
-        </ul>
-    </div>
+
     <h4 align="center">Recherche dans les congés</h4>
     <div class="panel panel-default">
         <div class="panel-body">
@@ -45,6 +39,9 @@
         </div>
     </div>
 </div>
+<a style="margin-top:20px;" class="btn btn-dark" href="http://127.0.0.1:8000/conges">
+    Annuler
+</a>
 </body>
 </html>
 

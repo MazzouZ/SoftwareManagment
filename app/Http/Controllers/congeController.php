@@ -104,8 +104,12 @@ class congeController extends Controller
 
                 $conge->save();
             }
-         else return redirect('/conges/create');
+         else {
+             alert()->error('Date Négatif !!!!','Il faut saisir une date valide' );
+             return redirect('/conges/create');
+         }
 
+        alert()->success('Congé Ajouté','Avec succées.' );
         return redirect('/conges/')->with('success', 'Votre congé est en cours de validaton');
     }
 //-------------------------------------------------------------------------------
@@ -137,11 +141,17 @@ class congeController extends Controller
                 $conge->etat = "Congé accepter par système";
             $conge->nbr_jour=$this->WorkingDaysNumber($request->input('date_debut'),$request->input('date_fin'));
             $conge->cause=$request->input('cause');
+
+            if($request->hasFile('justification'))
+                $conge->justification= $request->justification->store('justifications','public');
             $conge->save();
         }
-        else return redirect('/conges/create');
+        else {
+            alert()->error('Date Négatif !!!!','Il faut saisir une date valide' );
+            return redirect('/conges/');
+        }
 
-
+        alert()->success('Congé Demandé','Avec succées.' );
         return redirect('/conges/')->with('success', 'Votre congé est Modifiée avec succèes');
     }
 //    ---------------------------------------------------------------------------------------
@@ -153,6 +163,7 @@ class congeController extends Controller
            if ($conge->etat_Admin == 'Accepter')
             $user->nbr_jour_rester+=$conge->nbr_jour;
         $user->save();
+        alert()->success('Congé Supprimer','Avec succées.' );
         return redirect('/conges/')->with('success', 'Votre congé est Supprimer avec succèes');    
     }
     //-------------------------------------------------------------------------------
@@ -164,6 +175,7 @@ class congeController extends Controller
         $user->nbr_jour_rester-=$conge->nbr_jour;
         $user->save();
         $conge->save();
+        alert()->success('Congé Accepter','Avec succées.' );
         return redirect('/conges/');
     }
  //---------------------------------------------------------------------------
@@ -172,6 +184,7 @@ class congeController extends Controller
         $conge = Conge::find($id);
         $conge->etat_Admin="Refusé";
         $conge->save();
+        alert()->warning('Congé Refuser',';(' );
         return redirect('/conges/');
     }
 //    --------------------------------------------

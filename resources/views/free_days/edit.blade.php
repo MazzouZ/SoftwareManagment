@@ -25,6 +25,9 @@
                         </div>
                         <div>
                             <input class="btn btn-danger" type="submit" value="Sauvgarder">
+                            <a  class="btn btn-dark" href="http://127.0.0.1:8000/free_days">
+                                Annuler
+                            </a>
                         </div>
                     </form>
 

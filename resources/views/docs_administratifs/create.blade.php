@@ -32,6 +32,9 @@
                 </div>
                 <div>
                     <input class="btn btn-danger" type="submit" value="Demander">
+                    <a  class="btn btn-dark" href="http://127.0.0.1:8000/docs_administratifs">
+                        Annuler
+                    </a>
                 </div>
 
             </form>

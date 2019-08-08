@@ -26,6 +26,14 @@ class roleController extends Controller
         //          Permission::create(['name' => 'Supprimer_conge']);
         //          Permission::create(['name' => 'access_user_mangement']);
 
+        //Permission::create(['name' => 'access_free_day']);
+//        Permission::create(['name' => 'access_entreprise']);
+//        Permission::create(['name' => 'access_pointage']);
+//        Permission::create(['name' => 'access_report']);
+//        Permission::create(['name' => 'access_report_conge']);
+//        Permission::create(['name' => 'access_status_salaire']);
+//        Permission::create(['name' => 'import_pointage_data']);
+
         //          Permission::create(['name' => 'access_docs_administratifs']);
         //          Permission::create(['name' => 'Demander_docs_administratif']);
 
@@ -70,13 +78,17 @@ class roleController extends Controller
     {
         $this->validate($request, [
             'role_name' => 'required',
-            'permissions' => 'required',
+        //  'permissions' => 'required',
             // 'justification' => 'required'
         ]);
 
         $role=new Role();
         $role=Role::create(['name' => $request->input('role_name')]);
-        $role->permissions()->sync($request->input('permissions', []));
+
+        $perm=$request->input('permissions', []);
+        if(isset($perm))
+            $role->permissions()->sync($request->input('permissions', []));
+
 //        $role->syncPermissions($request->input('permissions'));
         $role->save();
 

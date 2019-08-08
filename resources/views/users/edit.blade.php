@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-md-12">
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card">
+                <div class="card-header">
                     <h5>Modification</h5>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
 
                     <form action="{{ route("users.update", [$users->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -30,6 +30,11 @@
                             <input type="password" id="password" name="password" class="form-control" placeholder="laissez ce champ vide(le mot de passe ne sera pas changer)">
                             
                         </div>
+                         <div class="form-group {{ $errors->has('confirm_password') ? 'has-error' : '' }}">
+                             <label for="confirm_password">Confirmation Mot de passe</label>
+                             <input type="password" id="password" name="confirm_password" class="form-control" placeholder="laissez ce champ vide(le mot de passe ne sera pas changer)">
+
+                         </div>
                         <!-------------------Role------------------------------------------>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -72,6 +77,9 @@
                         </div>
                          <div>
                              <input class="btn btn-danger" type="submit" value="Sauvgarder">
+                             <a  class="btn btn-dark" href="http://127.0.0.1:8000/users">
+                                 Annuler
+                             </a>
                          </div>
                      </div><!------------------------------------------------------------->
 
@@ -87,12 +95,16 @@
                              </div>
 
                              <div class="form-group {{ $errors->has('polite') ? 'has-error' : '' }}">
-                                 <label for="polite">Polite</label>
-                                 <input type="text" id="polite" name="polite" class="form-control" value="{{$users->polite}}">
+                                 <label for="polite">Politesse </label>
+                                 <select name="polite">
+                                     <option value="Mr" selected>Mr</option>
+                                     <option value="Mme" >Mme</option>
+                                     <option value="Mlle" >Mlle</option>
+                                 </select>
                              </div>
 
                              <div class="form-group {{ $errors->has('adress') ? 'has-error' : '' }}">
-                                 <label for="adress">Adress</label>
+                                 <label for="adress">adresse</label>
                                  <input type="text" id="adress" name="adress" class="form-control" value="{{$users->adress}}">
                              </div>
 
@@ -101,11 +113,11 @@
                                  <input type="date" id="hiring_date" name="hiring_date" class="form-control" value="{{$users->hiring_date}}">
                              </div>
                              <div class="form-group {{ $errors->has('exit_date') ? 'has-error' : '' }}">
-                                 <label for="exit_date">Exit date</label>
+                                 <label for="exit_date">Date de sortie</label>
                                  <input type="date" id="exit_date" name="exit_date" class="form-control" value="{{$users->exit_date}}">
                              </div>
                              <div class="form-group {{ $errors->has('birth_date') ? 'has-error' : '' }}">
-                                 <label for="birth_date">Birth day</label>
+                                 <label for="birth_date">Date Anniversaire</label>
                                  <input type="date" id="birth_date" name="birth_date" class="form-control" value="{{$users->birth_date}}">
 
                              </div>
@@ -115,7 +127,7 @@
 
                              </div>
                              <div class="form-group {{ $errors->has('professions') ? 'has-error' : '' }}">
-                                 <label for="professions">Professions</label>
+                                 <label for="professions">Profession</label>
                                  <input type="text" id="professions" name="professions" class="form-control" value="{{$users->professions}}">
 
                              </div>
@@ -125,14 +137,16 @@
 
                              </div>
                              <div class="form-group {{ $errors->has('gross_salary') ? 'has-error' : '' }}">
-                                 <label for="gross_salary">gross_salary</label>
+                                 <label for="gross_salary">Salaire Brut</label>
                                  <input type="text" id="gross_salary" name="gross_salary" class="form-control" value="{{$users->gross_salary}}">
 
                              </div>
                              <div class="form-group {{ $errors->has('family_situation') ? 'has-error' : '' }}">
                                  <label for="family_situation">Situation familliale</label>
-                                 <input type="text" id="family_situation" name="family_situation" class="form-control" value="{{$users->family_situation}}">
-
+                                 <select class="form-control" id="family_situation" name="family_situation" value="{{$users->family_situation}}">
+                                     <option value="celibataire">celibataire</option>
+                                     <option value="marié">marié</option>
+                                 </select>
                              </div>
                              <div class="form-group {{ $errors->has('nbr_children') ? 'has-error' : '' }}">
                                  <label for="nbr_children">Nombre d'enfants</label>

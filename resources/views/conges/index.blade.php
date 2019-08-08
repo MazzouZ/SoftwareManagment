@@ -1,19 +1,17 @@
 @extends('layouts.app')
 @section('content')
-<div class="card" style="background-color:#e4e5e6;">
-    <div>
-        <ul class="breadcrumb">
-            <li><i class="icon-home"></i> </li>
-            <li><a href="{{url('/home')}}">Home</a></li>
-        </ul>
-    </div>
+<div class="card" >
+    <div class="card-header">
         <h4 align="center">liste des congés</h4>
+    </div>
+    <br>
+    <br>
     <div class="col-md-12">
         @can('Demander_conge')
             <a class="btn btn-sm btn-pill btn-primary col-md-3" href="/conges/create"> Demander un congé </a>
         @endcan
         <a href="/conges/live_search" class="btn btn-sm btn-pill btn-warning col-md-3" style="margin-left: auto">
-            <i class="fa fa-circle-o-notch fa-spin"></i>Recherche
+            <i class="fa fa-circle-o-notch fa-spin"></i>Recherche avancée
         </a>
     </div>
 <div class="card-body">
@@ -32,8 +30,10 @@
                 <th scope="col"> Action </th>
             </thead>
             <tbody>
+            @php($t=0)
+
             @foreach($conges as $conge)
-                <tr>
+                <tr>@php($t++)
                     <td scope="row"> {{$conge->user->name}}</td>
                     <td scope="row"> <span class="badge badge-secondary"> {{$conge->cause}} </span> </td>
                     <td scope="row"> {{$conge->date_debut}}</td>
@@ -67,7 +67,7 @@
                     </td>
                     <td scope="row">
                         
-                        <form method="POST" action="{{ route('conges.destroy', ['id' => $conge->id]) }}">
+                        <form method="POST"  id="target{{$t}}" action="{{ route('conges.destroy', ['id' => $conge->id]) }}">
                             <div class="btn-group">
                             @can('Modifier_conge')
                             <a href="/conges/{{$conge->id}}/edit" class="btn btn-info"><i class="fa fa-edit"></i></a>
@@ -76,7 +76,7 @@
                             @can('Supprimer_conge')
                             {{csrf_field()}}
                             {{method_field('DELETE')}}
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                             <button class="btn btn-danger" type="reset" onclick="return myFunction({{$t}})"><i class="fa fa-trash-o"></i></button>
                             @endcan
                             <!---------------------------------------------->
                                 @role('Admin')
@@ -103,4 +103,21 @@
     @endif
 </div>
 </div>
+<script>
+    function myFunction(x) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                $( "#target"+x ).submit();
+            }
+        })
+    }
+</script>
 @endsection

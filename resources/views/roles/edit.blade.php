@@ -17,7 +17,7 @@
 
                 <div class="form-group {{ $errors->has('permissions') ? 'has-error' : '' }}">
                     <label for="permissions">Permission</label>
-                    <select name="permissions[]" id="permissions" class="form-control select2" multiple="multiple" required>
+                    <select name="permissions[]" id="permissions" class="form-control select2" multiple="multiple" >
                         @foreach($permissions as $permission)
                             <option value="{{ $permission->id }}" @if($role->permissions->contains($permission->id)) selected @endif>{{ $permission->name }}</option>
                         @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Free_day;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
 class free_daysController extends Controller
@@ -35,7 +36,7 @@ class free_daysController extends Controller
             $free_day->day = $request->input('day');
             $free_day->description = $request->input('description');
             $free_day->save();
-
+        alert()->success('Jour Ajouté','Avec succées.' );
         return redirect('/free_days/');
     }
 //-------------------------------------------------------------------------------
@@ -55,7 +56,7 @@ class free_daysController extends Controller
             $free_day->day = $request->input('day');
             $free_day->description = $request->input('description');
             $free_day->save();
-
+        alert()->success('Jour Modifiée','Avec succées.' );
         return redirect('/free_days/');
 
     }
@@ -63,6 +64,7 @@ class free_daysController extends Controller
     public function destroy($id)
     {
         Free_day::find($id)->delete();
+        alert()->success('Supprimé','Ligne Supprimé avec succèes.');
         return redirect('/free_days/');
     }
 }
