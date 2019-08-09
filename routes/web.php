@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 Auth::routes();
+Route::get('/excel/data/{excel_data}','CsvFile@excel_data');
 Route::get('/Profile/{id}','UserController@view_profile');
 Route::PUT('/Profile/{id}','UserController@updateProfile')->name('updateProfile');
 

@@ -28,7 +28,7 @@ class CsvFile extends Controller
     //-------------------------------------------------------------
 
     public function index_pointage(){
-        $p=Pointage::orderBy('id')->paginate(10);
+        $p=Pointage::orderBy('id')->paginate(50);
         return view('pointage.index',compact('p',$p));
     }
 

@@ -36,11 +36,12 @@
                 <option value="{{$row}}">{{$row}}</option>
             @endforeach
         </select>
-        <a class="btn btn-md btn-dark" href="{{ route('export') }}">Exporté les données sous fichier EXEL</a>
-        <button @click="tableToExcel('table', 'Lorem Table')export" class="btn btn-info">TO CSV</button>
-        <button id="pdf" class="btn btn-danger">TO PDF</button>
-
-        <table class="table table-striped table-bordered datatable dataTable no-footer" ref="table" id="loremTable" summary="lorem ipsum sit amet" rules="groups" frame="hsides">
+        <button  class="btn btn-warning" onclick="fcb()">Annuler le filtrage</button>
+        <br>
+        <a class="btn btn-danger" href="{{ route('export') }}">Exporté tous les données( EXEL)</a>
+        <button id="export" class="btn btn-info">Exporté ces données( EXEL)</button>
+        <p></p>
+        <table class="table table-striped table-bordered datatable dataTable no-footer" id="table">
             <thead class="thead-dark">
                  <tr>
                      <th>Mois</th>
@@ -79,7 +80,9 @@
         $("#myInput3").on("change", function() {
             var value = $(this).val().toLowerCase();
             $("#myTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                // $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                if(!($(this).text().toLowerCase().indexOf(value) > -1))
+                    $(this).remove()
             });
         });
     });
@@ -87,31 +90,35 @@
         $("#myInput4").on("change", function() {
             var value = $(this).val().toLowerCase();
             $("#myTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                if(!($(this).text().toLowerCase().indexOf(value) > -1))
+                    $(this).remove()
             });
         });
     });
+    function fcb() {
+        location.reload();
+    }
 </script>
 {{---------------------------------------------------------------------}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
-<script>
-    new Vue({
-        data(){
-            return{
-                uri :'data:application/vnd.ms-excel;base64,',
-                template:'<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
-                base64: function(s){ return window.btoa(unescape(encodeURIComponent(s))) },
-                format: function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
-            }
-        },
-        methods:{
-            tableToExcel(table, name){
 
-                if (!table.nodeType) table = this.$refs.table
-                var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
-                window.location.href = this.uri + this.base64(this.format(this.template, ctx))
-            }
-        }
-    }).$mount('#app')
+<script>
+    $( "#export" ).click(function() {
+        $('#table ').csvExport();
+    });
 </script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+
 @endsection

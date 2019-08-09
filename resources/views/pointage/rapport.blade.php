@@ -13,12 +13,12 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>Mois</th>
-                    <th>User</th>
+                    <th>Utilisateur</th>
                     <th>Congé</th>
-                    <th>freedays</th>
-                    <th>Required</th>
-                    <th>Worked</th>
-                    <th>Rapport</th>
+                    <th>Jours fériés</th>
+                    <th>Demandé</th>
+                    <th>Travaillé</th>
+                    <th>Le rapport</th>
                 </tr>
                 </thead>
                 <tbody id="myTable">

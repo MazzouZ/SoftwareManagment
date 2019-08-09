@@ -134,6 +134,7 @@
 <script src="{{asset('js/compatibility.min.js')}}"></script>
 <script src="{{asset('js/theViewer.min.js')}}"></script>
 <script src="{{asset('js/printThis.js')}}"></script>
+<script src="{{asset('js/csvExport.js')}}"></script>
 @include('sweetalert::alert')
 @yield('scripts')
 
